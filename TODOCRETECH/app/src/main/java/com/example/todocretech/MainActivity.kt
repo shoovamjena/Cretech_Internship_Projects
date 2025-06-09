@@ -11,37 +11,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.todocretech.model.TodoDatabase
 import com.example.todocretech.ui.theme.TODOCRETECHTheme
+import com.example.todocretech.view.HomeScreen
+import com.example.todocretech.viewModel.TodoViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val todoDatabase = TodoDatabase.getDatabase(applicationContext)
+        val viewModel = TodoViewModel(todoDatabase.todoDao())
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             TODOCRETECHTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                HomeScreen(viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TODOCRETECHTheme {
-        Greeting("Android")
     }
 }
