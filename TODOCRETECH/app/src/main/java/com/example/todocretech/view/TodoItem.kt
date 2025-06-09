@@ -16,6 +16,8 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,29 +39,34 @@ fun TodoItem(title:String,desc: String, onDelete:() -> Unit, onUpdate:() -> Unit
                 text = title,
                 fontStyle = FontStyle.Italic,
                 fontWeight = FontWeight.Bold,
-                fontSize = 32.sp
+                fontSize = 32.sp,
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.padding(top = 10.dp))
             Text(
                 text = desc,
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.primary
             )
             Row( modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End) {
-                IconButton(
+                OutlinedButton(
                     onClick = onDelete,
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = null
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
-                IconButton(
+                Spacer(Modifier.weight(1f))
+                OutlinedButton(
                     onClick = onUpdate,
                 ) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = null
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             }

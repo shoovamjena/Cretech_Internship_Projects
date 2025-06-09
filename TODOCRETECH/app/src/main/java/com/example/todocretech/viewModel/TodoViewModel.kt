@@ -36,9 +36,9 @@ class TodoViewModel(private val todoDao: TodoDao): ViewModel(){
             todoDao.DeleteTodo(todo)
         }
     }
-    fun updateTodo(title: String,desc: String){
+    fun updateTodo(id:Int,title: String,desc: String){
         viewModelScope.launch(Dispatchers.IO) {
-            val todo = Todo(title = title, desc = desc)
+            val todo = Todo(id, title, desc)
             todoDao.UpdateTodo(todo)
         }
     }
